@@ -25,19 +25,27 @@ let welt =  [];
  */
 let tetro = [];
 
-/**
- * @TODO Finde die geeigneten `keyCodes`, um die position des Tetrominos zu aktualisieren.
- *
- * Hinweise:
- *    - https://keycode.info/
- */
-document.addEventListener('keyup', (event) => {
-    // hier kommt dein Code:
 
-    // ------
-    rasterAktualisieren();
-    positionZeigen();
-});
+const tetroNachLinksBewegen = () => {
+    tetro.nachLinks();
+    // TODO: prüfen ob die Ränder erreicht wurden.
+    //       alternativ kannst du die Prüfung direkt
+    //       in der Klasse Tetromino implementieren.
+};
+
+const tetroNachRechtsBewegen = () => {
+    tetro.nachRechts();
+    // TODO: prüfen ob die Ränder erreicht wurden.
+    //       alternativ kannst du die Prüfung direkt
+    //       in der Klasse Tetromino implementieren.
+};
+
+const tetroNachUntenSchieben = () => {
+    tetro.nachUnten();
+    // TODO: prüfen ob die Ränder erreicht wurden.
+    //       alternativ kannst du die Prüfung direkt
+    //       in der Klasse Tetromino implementieren.
+};
 
 
 
@@ -46,6 +54,26 @@ document.addEventListener('keyup', (event) => {
  * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
  * =================================================================
  */
+
+document.addEventListener('keyup', (event) => {
+    switch (event.code) {
+        case 'ArrowLeft':
+            tetroNachLinksBewegen();
+            break;
+        case 'ArrowRight':
+            tetroNachRechtsBewegen();
+            break;
+        case 'ArrowDown':
+            tetroNachUntenSchieben();
+            break;
+        default:
+            console.log(event.code);
+    }
+
+    // ------
+    rasterAktualisieren();
+    positionZeigen();
+});
 
     // Erzeugt die `welt` Matrix
 const weltErzeugen = () => {
