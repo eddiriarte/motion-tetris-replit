@@ -1,49 +1,104 @@
-const O =  [
+/**
+ * Die Bausteine im Tetris werden Tetrominos benannt. 
+ * In der original Variante des Spiels wurden sieben Tetrominos definiert. 
+ * Die Tetrominos werden Aufgrund ihrer Ähnlichkeit mit den lateinischen Buchstaben (T, I, O, L, J, S, Z) angesprochen.
+ */
+
+/**
+ * ███ ███
+ * ███ ███
+ *
+ * @type {number[][]}
+ */
+const O = [
     [1, 1],
     [1, 1],
 ];
 
+/**
+ * ███
+ * ███
+ * ███
+ * ███
+ *
+ * @type {number[][]}
+ */
 const I = [
-    [0],
+    [0]
 ];
 
+/**
+ * ███
+ * ███
+ * ███ ███
+ *
+ * @type {number[][]}
+ */
 const L = [
-    [0],
+    [0]
 ];
 
+/**
+ *     ███
+ *     ███
+ * ███ ███
+ *
+ * @type {number[][]}
+ */
 const J = [
-    [0],
+    [0]
 ];
 
+/**
+ *     ███ ███
+ * ███ ███
+ *
+ * @type {number[][]}
+ */
 const S = [
-    [0],
+    [0]
 ];
 
+/**
+ * ███ ███
+ *     ███ ███
+ *
+ * @type {number[][]}
+ */
 const Z = [
-    [0],
+    [0]
 ];
 
+/**
+ * ███ ███ ███
+ *     ███
+ *
+ * @type {number[][]}
+ */
 const T = [
-    [0],
+    [0]
 ];
 
 
 
 /**
  * =================================================================
- * IHR BRAUCH EUCH NICHT UM DIESEN TEIL ZU KÜMMERN IM MOMENT!
+ * IHR BRAUCH EUCH NICHT UM DIESEN TEIL ZU KÜMMERN(IM MOMENT)!
  * =================================================================
  */
 
-// Zeichnet einen Tetro in der Vorschaubox
+// Zeichnet einen Tetro im Vorschaukasten
 const figurAnzeigen = (tetro) => {
-  console.log('....', tetro)
+
+    // Diese Schleife ist für die Zeilen im Raster
     for (let zeile = 0; zeile < 4; zeile++) {
         const indexY = tetro.length - 1 - zeile;
+
+        // Diese Schleife ist für die Spalten im Raster
         for (let spalte = 0; spalte < 4; spalte++) {
             const id = 'vorschau_' + (3 - zeile) + '-' + spalte;
             const zelle = document.getElementById(id);
-            
+
             if (zeile >= tetro.length || spalte >= tetro.length) {
                 zelle.className = 'tetro';
                 continue;
@@ -52,17 +107,7 @@ const figurAnzeigen = (tetro) => {
             const wert = tetro[tetro.length - 1 - zeile][spalte];
             zelle.className = (wert < 1) ? 'tetro' : 'tetro gefuellt';
         }
-    }
-};
 
-// Globale Variablen/Funktionen werden an das `window` Objekt geknüpft
-/*Object.assign(window, {
-    O,
-    I,
-    L,
-    J,
-    S,
-    Z,
-    T,
-    figurAnzeigen
-});*/
+    }
+
+};
