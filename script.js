@@ -21,34 +21,46 @@ let welt =  [];
 /**
  * Aktueller Baustein/Tetromino das auf dem Raster fällt.
  *
- * @type {*[]}
+ * @type Tetromino
  */
 let tetro = [];
 
 /**
- * Die Koordinaten/Position des Bausteins auf dem Raster.
+ * @TODO Finde die geeigneten `keyCodes`, um die position des Tetrominos zu aktualisieren.
  *
- * @type {{zeile: number, spalte: number}}
+ * Hinweise:
+ *    - https://keycode.info/
  */
-const position = {
-    zeile: 3,
-    spalte: 3
-};
+document.addEventListener('keyup', (event) => {
+    // hier kommt dein Code:
+
+    // ------
+    rasterAktualisieren();
+    positionZeigen();
+});
+
+
 
 /**
- * @TODO Vervöllständige diese Funktion
+ * =================================================================
+ * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
+ * =================================================================
  */
+
+    // Erzeugt die `welt` Matrix
+const weltErzeugen = () => {
+        welt = (new Array(hoehe)).fill((new Array(breite)).fill(0));
+    };
+
+// Generiert ein zufälligen Tetromino-Objekt
 const naechstesBaustein = () => {
     const steine = Object.keys(Bausteine);
-    
-    // tetro = /* ...? */
+    const zufaelligenStein = steine[Math.floor(Math.random() * steine.length)];
 
-    rasterAktualisieren();
+    tetro = new Tetromino(3, 3, Bausteine[zufaelligenStein]);
 };
 
-/**
- * @TODO Finde den Fehler und behebe es
- */
+// aktualisiert die Darstellung auf dem Browser
 const rasterAktualisieren = () => {
     const weltContainer = document.getElementById('welt');
 
@@ -57,14 +69,12 @@ const rasterAktualisieren = () => {
             const zelle = document.getElementById(`welt_${zeile}-${spalte}`);
             zelle.classList.remove('gefuellt');
 
-            const y = zeile - position.zeile;
-            const x = spalte - position.spalte;
-            if (x < 0 || x >= tetro.length || y < 0 || y >= tetro.length) {
+            if (tetro.istNichtAufZelle(zeile, spalte)) {
                 continue;
             }
 
-            const tetroZelle = tetro[y][x];
-            if (tetroZelle < 1) {
+            const tetroZelle = tetro.zelle(zeile, spalte);
+            if (tetroZelle > 0) {
                 zelle.classList.add('gefuellt');
             }
 
@@ -72,17 +82,7 @@ const rasterAktualisieren = () => {
     }
 };
 
-/**
- * =================================================================
- * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
- * =================================================================
- */
-
-// Erzeugt die `welt` Matrix
-const weltErzeugen = () => {
-    welt = (new Array(hoehe)).fill((new Array(breite)).fill(0));
-};
-
+// initialisiert den Weltraster
 const weltContainerInitialisieren = () => {
     const weltContainer = document.getElementById('welt');
     weltContainer.innerHTML = welt
@@ -94,20 +94,22 @@ const weltContainerInitialisieren = () => {
         .join('<br>');
 }
 
-const zeileSetzen = (zeile) => {
-    position.zeile = zeile;
-    rasterAktualisieren();
+const positionZeigen = () => {
+    document.querySelector('#tetro-zeile span').innerText = tetro.zeile;
+    document.querySelector('#tetro-spalte span').innerText = tetro.spalte;
 }
 
-const spalteSetzen = (spalte) => {
-    position.spalte = spalte;
+const reset = () => {
+    naechstesBaustein();
     rasterAktualisieren();
+    positionZeigen();
 }
 
 const starten = () => {
     tetro = null;
     weltErzeugen();
     weltContainerInitialisieren();
+    reset();
 }
 
 starten();

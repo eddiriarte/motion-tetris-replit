@@ -23,39 +23,36 @@
 <body>
 
     <div id="seite">
-        <h2>Random Tetromino</h2>
+        <h2>Tetromino im Bewegung</h2>
 
         <article class="beschreibung">
-            <p>Während des Spiels werden immer zufallige Bausteine nacheinander ins Spiel eingeworfen.</p>
+            <p>Als erster Schritt in Richtung Steuerung, binden wir die Tastatur ans Spiel an. Bausteine sollen durch den Raster bewegt werden können.</p>
             <p>
-                <strong>TODO:</strong> 
-                Vervöllständige die Funktion `naechstesBaustein` das ein zufälliges Tetromino zurückgibt. <br>
-                Zudem sollen die Tetrominos auf dem Weltraster angezeigt werden, aber es hat sich ein "Bug" in der Funktion `rasterAktualisieren` eingeschlichen. Behebe diesen Fehler.
+                <strong>TODO:</strong>
+                Implementiere die fehlenden Komponenten im Code, sodass du mit dem Pfeiltasten den Tetromino steuern kannst.<br>
             </p>
-
         </article>
 
         <div class="container">
-            
+
             <section class="spalte welt">
                 <div id="welt" class="raster"></div>
             </section>
 
             <section class="spalte auswahl">
-                <label class="eingabe-beschreibung" for="tetro-zeile">Zeile:</label>
-                <input type="number" class="eingabe" name="zeile" id="tetro-zeile" value="3" onchange="zeileSetzen(this.value)">
+                <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
                 <br>
-                <label class="eingabe-beschreibung" for="tetro-spalte">Spalte:</label>
-                <input type="number" class="eingabe" name="spalte" id="tetro-spalte" value="3" onchange="spalteSetzen(this.value)">
-                <button class="btn" onclick="naechstesBaustein()">Nächstes Baustein</button>
-                <div id="roh-daten"></div>
+                <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
+                <br>
+                <button class="btn" onclick="reset()">Wiederherstellen</button>
             </section>
 
-            
+
         </div>
     </div>
 
     <script src="skripte/figuren.js"></script>
+    <script src="skripte/tetromino.js"></script>
     <script src="script.js"></script>
 
 </body>
