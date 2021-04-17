@@ -1,63 +1,113 @@
+/**
+ * Breite des Weltrasters
+ *
+ * @type {number}
+ */
+const breite = 9;
+
+/**
+ * Höhe des Weltrasters
+ *
+ * @type {number}
+ */
+const hoehe = 15;
+
+/**
+ * Weltraster
+ * @type {null}
+ */
 let welt =  [];
 
-let breite = 0;
-
-let hoehe = 0;
+/**
+ * Aktueller Baustein/Tetromino das auf dem Raster fällt.
+ *
+ * @type {*[]}
+ */
+let tetro = [];
 
 /**
- * 1. Erstelle ein leeres Array
- * 2. Erstelle zwei ineinander verschachtelte for-Schleifen
- * 3. Füge den Wert "0" für jede Zelle im Raster.
+ * Die Koordinaten/Position des Bausteins auf dem Raster.
+ *
+ * @type {{zeile: number, spalte: number}}
  */
-const weltErzeugen = () => {
-    // Liste wird zurükgesetzt
-    welt = [];
-    
-    // Deine Schleifen kommen hier:
-    
+const position = {
+    zeile: 3,
+    spalte: 3
 };
 
+/**
+ * @TODO Vervöllständige diese Funktion
+ */
+const naechstesBaustein = () => {
+    const steine = Object.keys(Bausteine);
+    
+    // tetro = /* ...? */
+
+    rasterAktualisieren();
+};
 
 /**
- * Nimmt die hoehe und breite des Weltrasters und erzeugt
- * das HTML Code das angezeit werden soll.  
+ * @TODO Finde den Fehler und behebe es
  */
-const weltAusmalen = () => {
+const rasterAktualisieren = () => {
     const weltContainer = document.getElementById('welt');
-    // Container wird zurükgesetzt
-    weltContainer.innerHTML = '';
-
-    const hoehe = weltHoehe();
-    const breite = weltBreite();
 
     for (let zeile = 0; zeile < hoehe; zeile++) {
-        let html = '';
-        
         for (let spalte = 0; spalte < breite; spalte++) {
-            html += `<div id="welt_${zeile}-${spalte}" class="tetro"></div>`;            
-        }
+            const zelle = document.getElementById(`welt_${zeile}-${spalte}`);
+            zelle.classList.remove('gefuellt');
 
-        weltContainer.innerHTML += html + '<br>';
+            const y = zeile - position.zeile;
+            const x = spalte - position.spalte;
+            if (x < 0 || x >= tetro.length || y < 0 || y >= tetro.length) {
+                continue;
+            }
+
+            const tetroZelle = tetro[y][x];
+            if (tetroZelle < 1) {
+                zelle.classList.add('gefuellt');
+            }
+
+        }
     }
-}
+};
 
 /**
  * =================================================================
- * IHR BRAUCH EUCH NICHT UM DIESEN TEIL ZU KÜMMERN(IM MOMENT)!
+ * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
  * =================================================================
  */
 
-const darstellungGenerieren = () => {
-    hoehe = Number.parseInt(document.getElementsByName('hoehe').item(0).value || 0);
-    breite = Number.parseInt(document.getElementsByName('breite').item(0).value || 0);
-    
-    weltErzeugen();
-    weltAusmalen();
-
-    document.getElementById('roh-daten').innerHTML = '<pre><code>' + JSON.stringify(welt, null, 4) + '</code></pre>';
+// Erzeugt die `welt` Matrix
+const weltErzeugen = () => {
+    welt = (new Array(hoehe)).fill((new Array(breite)).fill(0));
 };
 
+const weltContainerInitialisieren = () => {
+    const weltContainer = document.getElementById('welt');
+    weltContainer.innerHTML = welt
+        .map(
+            (zellen, y) => zellen.reduce(
+                (spalten, _, x) => `${spalten}<div id="welt_${y}-${x}" class="tetro"></div>`, ''
+            )
+        )
+        .join('<br>');
+}
 
-const weltHoehe = () => welt.length || 0;
+const zeileSetzen = (zeile) => {
+    position.zeile = zeile;
+    rasterAktualisieren();
+}
 
-const weltBreite = () => (welt[0] || []).length || 0;
+const spalteSetzen = (spalte) => {
+    position.spalte = spalte;
+    rasterAktualisieren();
+}
+
+const starten = () => {
+    tetro = null;
+    weltErzeugen();
+    weltContainerInitialisieren();
+}
+
+starten();

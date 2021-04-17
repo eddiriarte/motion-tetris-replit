@@ -91,3 +91,13 @@ const T = [
     [7, 7, 7],
     [0, 7, 0]
 ];
+
+const Bausteine = {
+    O,
+    I,
+    J,
+    L,
+    S,
+    Z,
+    T
+};
