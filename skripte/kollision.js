@@ -89,4 +89,36 @@ const kollidiertNachUnten = (welt, stein) => {
         });
 
     });
-}
+};
+
+const kollidiert = (welt, stein) => {
+    return !stein.muster.every((spaltenListe, zeile) => spaltenListe.every(
+        (tetroZelle, spalte) => {
+            // ist leer und kann nicht kollidieren.
+            if (tetroZelle === 0) {
+                // console.log('ist leer und kann nicht kollidieren.');
+                return true;
+            }
+
+            const y = stein.zeile + zeile;
+
+            // ist noch nicht auf der Welt und kann nicht kollidieren
+            if (y < 0) {
+                // console.log('ist noch nicht auf der Welt und kann nicht kollidieren');
+                return true;
+            }
+
+            const x = stein.spalte + spalte;
+
+            // ist am rechten Rand und kann nicht weiter nach Rechts
+            if (x <= 0 || x >= welt[0].length - 1 || y >= welt.length) {
+                // console.log('ist am rechten Rand und kann nicht weiter nach Rechts');
+                return false;
+            }
+
+            const weltZelle = welt[y][x];
+            console.log('Entweder weltZelle oder tetroZelle ist 0 ->', weltZelle , tetroZelle);
+            return (weltZelle * tetroZelle) === 0;
+        }
+    ));
+};

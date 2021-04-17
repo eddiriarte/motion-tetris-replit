@@ -6,32 +6,32 @@ const weltErzeugen = (hoehe, breite) => {
 };
 
 // initialisiert den Weltraster
-const weltContainerInitialisieren = (welt) => {
+const weltContainerInitialisieren = (welt, prefix) => {
     weltContainer.innerHTML = welt
         .map(
             (zellen, y) => zellen.reduce(
-                (spalten, _, x) => `${spalten}<div id="welt_${y}-${x}" class="tetro"></div>`, ''
+                (spalten, _, x) => `${spalten}<div id="${prefix}_${y}-${x}" class="tetro"></div>`, ''
             )
         )
         .join('<br>');
 }
 
 // aktualisiert die Darstellung auf dem Browser
-const weltRasterAktualisieren = (welt, tetro) => {
+const weltRasterAktualisieren = (welt, tetro, prefix) => {
     for (let zeile = 0; zeile < welt.length; zeile++) {
         for (let spalte = 0; spalte < welt[0].length; spalte++) {
-            const zelle = document.getElementById(`welt_${zeile}-${spalte}`);
+            const zelle = document.getElementById(`${prefix}_${zeile}-${spalte}`);
             zelle.classList.remove('gefuellt');
 
-            if (tetro.istNichtAufZelle(zeile, spalte)) {
-                continue;
+            if (tetro.istAufZelle(zeile, spalte)) {
+                const tetroZelle = tetro.zelle(zeile, spalte);
+                if (tetroZelle > 0)
+                    zelle.classList.add('gefuellt');
             }
 
-            const tetroZelle = tetro.zelle(zeile, spalte);
-            if (tetroZelle > 0) {
+            const weltZelle = welt[zeile][spalte];
+            if (weltZelle > 0)
                 zelle.classList.add('gefuellt');
-            }
-
         }
     }
 };

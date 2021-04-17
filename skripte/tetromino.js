@@ -23,6 +23,24 @@ class Tetromino {
      *       - Keep it simple, aber du darfst auf kollisionen Prüfen, s. `kollidiert`
      */
     drehen(welt) {
+        const laenge = this.muster.length;
+        const muster = [];
+
+        for (let zeile = 0; zeile < laenge; zeile++) {
+            const neueZeile = [];
+            for (let spalte = 0; spalte < laenge; spalte++) {
+                neueZeile.push(this.muster[spalte][zeile]);
+            }
+            muster.push(neueZeile.reverse());
+        }
+
+        const zeile = this.zeile;
+        const spalte = this.spalte;
+        if (kollidiert(welt, { muster, zeile, spalte })) {
+            return;
+        }
+
+        this.muster = muster;
     }
 
     // prüft ob das Tetromino sich auf dem gegebenen Koordinaten befindet.
@@ -45,6 +63,13 @@ class Tetromino {
     zelle(zeile, spalte) {
         const y = zeile - this.zeile;
         const x = spalte - this.spalte;
+
+        if (y < 0
+            || y >= this.muster.length
+            || x < 0
+            || x >= this.muster.length) {
+            return 0;
+        }
 
         return this.muster[y][x];
     }

@@ -23,13 +23,14 @@
 <body>
 
     <div id="seite">
-        <h2>Spielschleife</h2>
+        <h2>Tetromino ablegen</h2>
 
         <article class="beschreibung">
-            <p>Die Tetris Figuren bewegen sich automatisch immer nach unten. Diese Anziehungskraft soll in unsere Spielwelt eingebaut werden.</p>
+            <p>Die Bausteine werden aktuell immer nacheinander nach unten verschoben.
+                Leider bleiben sie nicht unten stehen sondern verschwinden sie immer wieder!</p>
             <p>
                 <strong>TODO:</strong>
-                Implementiere mit Hilfe der JS-Funktionen `setTimeout` oder `setInterval` eine endlose Schleife, die das Tetromino um eine Zeile nach unten schiebt.<br>
+                Aktualisiere das Spielfeldmatrix (`welt`) und setze die Werte des letzten Tetrominos ein.
             </p>
 
         </article>
@@ -41,11 +42,7 @@
             </section>
 
             <section class="spalte auswahl">
-                <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
-                <br>
-                <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
             </section>
-
 
         </div>
     </div>
@@ -54,6 +51,7 @@
     <script src="skripte/welt.js"></script>
     <script src="skripte/kollision.js"></script>
     <script src="skripte/tetromino.js"></script>
+    <script src="skripte/tetris.js"></script>
     <script src="script.js"></script>
 
 </body>
