@@ -1,85 +1,45 @@
-/**
- * Die Bausteine im Tetris werden Tetrominos benannt. 
- * In der original Variante des Spiels wurden sieben Tetrominos definiert. 
- * Die Tetrominos werden Aufgrund ihrer Ähnlichkeit mit den lateinischen Buchstaben (T, I, O, L, J, S, Z) angesprochen.
- */
+let welt =  [];
+
+let breite = 0;
+
+let hoehe = 0;
 
 /**
- * ███ ███
- * ███ ███
- *
- * @type {number[][]}
+ * 1. Erstelle ein leeres Array
+ * 2. Erstelle zwei ineinander verschachtelte for-Schleifen
+ * 3. Füge den Wert "0" für jede Zelle im Raster.
  */
-const O = [
-    [1, 1],
-    [1, 1],
-];
+const weltErzeugen = () => {
+    // Liste wird zurükgesetzt
+    welt = [];
+    
+    // Deine Schleifen kommen hier:
+    
+};
+
 
 /**
- * ███
- * ███
- * ███
- * ███
- *
- * @type {number[][]}
+ * Nimmt die hoehe und breite des Weltrasters und erzeugt
+ * das HTML Code das angezeit werden soll.  
  */
-const I = [
-    [0]
-];
+const weltAusmalen = () => {
+    const weltContainer = document.getElementById('welt');
+    // Container wird zurükgesetzt
+    weltContainer.innerHTML = '';
 
-/**
- * ███
- * ███
- * ███ ███
- *
- * @type {number[][]}
- */
-const L = [
-    [0]
-];
+    const hoehe = weltHoehe();
+    const breite = weltBreite();
 
-/**
- *     ███
- *     ███
- * ███ ███
- *
- * @type {number[][]}
- */
-const J = [
-    [0]
-];
+    for (let zeile = 0; zeile < hoehe; zeile++) {
+        let html = '';
+        
+        for (let spalte = 0; spalte < breite; spalte++) {
+            html += `<div id="welt_${zeile}-${spalte}" class="tetro"></div>`;            
+        }
 
-/**
- *     ███ ███
- * ███ ███
- *
- * @type {number[][]}
- */
-const S = [
-    [0]
-];
-
-/**
- * ███ ███
- *     ███ ███
- *
- * @type {number[][]}
- */
-const Z = [
-    [0]
-];
-
-/**
- * ███ ███ ███
- *     ███
- *
- * @type {number[][]}
- */
-const T = [
-    [0]
-];
-
-
+        weltContainer.innerHTML += html + '<br>';
+    }
+}
 
 /**
  * =================================================================
@@ -87,27 +47,17 @@ const T = [
  * =================================================================
  */
 
-// Zeichnet einen Tetro im Vorschaukasten
-const figurAnzeigen = (tetro) => {
+const darstellungGenerieren = () => {
+    hoehe = Number.parseInt(document.getElementsByName('hoehe').item(0).value || 0);
+    breite = Number.parseInt(document.getElementsByName('breite').item(0).value || 0);
+    
+    weltErzeugen();
+    weltAusmalen();
 
-    // Diese Schleife ist für die Zeilen im Raster
-    for (let zeile = 0; zeile < 4; zeile++) {
-        const indexY = tetro.length - 1 - zeile;
-
-        // Diese Schleife ist für die Spalten im Raster
-        for (let spalte = 0; spalte < 4; spalte++) {
-            const id = 'vorschau_' + (3 - zeile) + '-' + spalte;
-            const zelle = document.getElementById(id);
-
-            if (zeile >= tetro.length || spalte >= tetro.length) {
-                zelle.className = 'tetro';
-                continue;
-            }
-
-            const wert = tetro[tetro.length - 1 - zeile][spalte];
-            zelle.className = (wert < 1) ? 'tetro' : 'tetro gefuellt';
-        }
-
-    }
-
+    document.getElementById('roh-daten').innerHTML = '<pre><code>' + JSON.stringify(welt, null, 4) + '</code></pre>';
 };
+
+
+const weltHoehe = () => welt.length || 0;
+
+const weltBreite = () => (welt[0] || []).length || 0;

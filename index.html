@@ -2,77 +2,58 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-	<meta name="author" content="Eduardo Iriarte">
-	<meta name="copyright" content="Eduardo Iriarte">
-	<meta name="description" content="Eine simple browserbasierte Version von Tetris, das mit Gesten gesteuert werden kann.">
-	<meta name="keywords" content="tetris, spiel, hacker-school, berlin">
+    <meta name="author" content="Eduardo Iriarte">
+    <meta name="copyright" content="Eduardo Iriarte">
+    <meta name="description"
+        content="Eine simple browserbasierte Version von Tetris, das mit Gesten gesteuert werden kann.">
+    <meta name="keywords" content="tetris, spiel, hacker-school, berlin">
 
-	<meta http-equiv="content-language" content="de">
+    <meta http-equiv="content-language" content="de">
 
-	<title>Motion Tetris</title>
+    <title>Motion Tetris</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-	<div id="seite">
-		<h2>Tetrominos</h2>
+    <div id="seite">
+        <h2>Welt</h2>
 
-		<article class="beschreibung">
-			<p>
-				Die Bausteine im Tetris werden Tetrominos benannt. In der original Variante des Spiels wurden sieben Tetrominos definiert.
-				Die Tetrominos werden Aufgrund ihrer Ähnlichkeit mit den lateinischen Buchstaben (T, I, O, L, J, S, Z) angesprochen.
-			</p>
+        <article class="beschreibung">
+            <p>Wir geben unseren Spielfeld die Bezeichnung "Welt". Unsere Welt besteht aus einem Raster mit zwei Dimensionen("hoehe" und "breite").
+            </p>
+            <p>Daten und Darstellung werden im Programm strikt getrennt, das hilft die Übersichtlichkeit zu bewahren. Dazu verwenden
+                wir zwei Funktionen, die einer kann eine Welt mit eine beliebige Größe erstellen und die andere
+                übertragt den Zustand auf dem Browser.</p>
 
-			<p><strong>TODO:</strong> Beim Klicken auf einen der Buttons soll der entsprechender Tetromino in der Vorschaubox angezeigt werden.</p>
+            <p><strong>TODO:</strong> Schleifen sollen vervöllständigt werden, sodass unsere Welt wieder sichtbar wird.
+            </p>
 
         </article>
 
 
         <div class="container">
             <section class="spalte auswahl">
-                <button class="btn" onclick="figurAnzeigen(T)">Figur T</button>
-                <button class="btn" onclick="figurAnzeigen(I)">Figur I</button>
-                <button class="btn" onclick="figurAnzeigen(O)">Figur O</button>
-                <button class="btn" onclick="figurAnzeigen(L)">Figur L</button>
-                <button class="btn" onclick="figurAnzeigen(J)">Figur J</button>
-                <button class="btn" onclick="figurAnzeigen(S)">Figur S</button>
-                <button class="btn" onclick="figurAnzeigen(Z)">Figur Z</button>
+                <input type="number" class="eingabe" name="breite" id="welt-breite" placeholder="Breite">
+                <input type="number" class="eingabe" name="hoehe" id="welt-hoehe" placeholder="Höhe">
+                <button class="btn" onclick="darstellungGenerieren()">Aktualisieren</button>
+                <div id="roh-daten"></div>
             </section>
+
             <section class="spalte vorschau">
-                <div class="raster">
-                    <div id="vorschau_0-0" class="tetro"></div>
-                    <div id="vorschau_0-1" class="tetro"></div>
-                    <div id="vorschau_0-2" class="tetro"></div>
-                    <div id="vorschau_0-3" class="tetro"></div>
-                    <br>
-                    <div id="vorschau_1-0" class="tetro"></div>
-                    <div id="vorschau_1-1" class="tetro"></div>
-                    <div id="vorschau_1-2" class="tetro"></div>
-                    <div id="vorschau_1-3" class="tetro"></div>
-                    <br>
-                    <div id="vorschau_2-0" class="tetro"></div>
-                    <div id="vorschau_2-1" class="tetro"></div>
-                    <div id="vorschau_2-2" class="tetro"></div>
-                    <div id="vorschau_2-3" class="tetro"></div>
-                    <br>
-                    <div id="vorschau_3-0" class="tetro"></div>
-                    <div id="vorschau_3-1" class="tetro"></div>
-                    <div id="vorschau_3-2" class="tetro"></div>
-                    <div id="vorschau_3-3" class="tetro"></div>
-                </div>
+                <div id="welt" class="raster"></div>
             </section>
         </div>
-
     </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
