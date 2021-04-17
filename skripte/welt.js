@@ -16,22 +16,32 @@ const weltContainerInitialisieren = (welt, prefix) => {
         .join('<br>');
 }
 
+const tetroStyleNamen = {
+    1: 'O',
+    2: 'I',
+    3: 'L',
+    4: 'J',
+    5: 'S',
+    6: 'Z',
+    7: 'T'
+};
+
 // aktualisiert die Darstellung auf dem Browser
 const weltRasterAktualisieren = (welt, tetro, prefix) => {
     for (let zeile = 0; zeile < welt.length; zeile++) {
         for (let spalte = 0; spalte < welt[0].length; spalte++) {
             const zelle = document.getElementById(`${prefix}_${zeile}-${spalte}`);
-            zelle.classList.remove('gefuellt');
+            zelle.classList.remove('gefuellt', 'O', 'I', 'L', 'J', 'S', 'Z', 'T');
 
             if (tetro.istAufZelle(zeile, spalte)) {
                 const tetroZelle = tetro.zelle(zeile, spalte);
                 if (tetroZelle > 0)
-                    zelle.classList.add('gefuellt');
+                    zelle.classList.add(tetroStyleNamen[tetroZelle], 'gefuellt');
             }
 
             const weltZelle = welt[zeile][spalte];
             if (weltZelle > 0)
-                zelle.classList.add('gefuellt');
+                zelle.classList.add(tetroStyleNamen[weltZelle], 'gefuellt');
         }
     }
 };

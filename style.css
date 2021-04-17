@@ -1,15 +1,33 @@
 @font-face {
     font-family: 'Karmatic Arcade';
     src: url('schriftarten/KarmaticArcade.woff2') format('woff2'),
-        url('schriftarten/KarmaticArcade.woff') format('woff'),
-        url('schriftarten/KarmaticArcade.ttf') format('truetype'),
-        url('schriftarten/KarmaticArcade.svg#KarmaticArcade') format('svg');
+    url('schriftarten/KarmaticArcade.woff') format('woff'),
+    url('schriftarten/KarmaticArcade.ttf') format('truetype'),
+    url('schriftarten/KarmaticArcade.svg#KarmaticArcade') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 
 @import url(https://fonts.googleapis.com/css?family=Monda:400,700);
+
+
+:root {
+    --tetro-t-color: #feca57;
+    --tetro-t-schatten-color: #ff9f43;
+    --tetro-s-color: #feca57;
+    --tetro-s-schatten-color: #ff9f43;
+    --tetro-z-color: #feca57;
+    --tetro-z-schatten-color: #ff9f43;
+    --tetro-o-color: #feca57;
+    --tetro-o-schatten-color: #ff9f43;
+    --tetro-i-color: #feca57;
+    --tetro-i-schatten-color: #ff9f43;
+    --tetro-j-color: #feca57;
+    --tetro-j-schatten-color: #ff9f43;
+    --tetro-l-color: #feca57;
+    --tetro-l-schatten-color: #ff9f43;
+}
 
 
 /* =========================================== */
@@ -31,9 +49,10 @@ h2 {
     color: #95a5a6;
     font-size: 2.2em;
 }
-    h2 .punkte {
-        color: #34495e;
-    }
+
+h2 .punkte {
+    color: #34495e;
+}
 
 #seite {
     width: 90%;
@@ -47,29 +66,32 @@ h2 {
     display: inline-block;
     position: relative;
 }
-    #tetris .modal {
-        color: #ecf0f1;
-        position: absolute;
-        padding: 30px 60px;
-        background: #34495e;
-        width: 200px;
-        text-align: center;
-        top: 80px;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        box-shadow: 1px 1px 2px 3px #7f8c8d;
+
+#tetris .modal {
+    color: #ecf0f1;
+    position: absolute;
+    padding: 30px 60px;
+    background: #34495e;
+    width: 200px;
+    text-align: center;
+    top: 80px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 1px 1px 2px 3px #7f8c8d;
 }
-        #tetris .modal h3 {
-            margin-top: 0;
-        }
-        #tetris .modal button {
-            outline: 0;
-            border: 0;
-            color: #2c3e50;
-            background-color: #ecf0f1;
-            padding: 8px 16px;
-            font-size: 1.3em;
-        }
+
+#tetris .modal h3 {
+    margin-top: 0;
+}
+
+#tetris .modal button {
+    outline: 0;
+    border: 0;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    padding: 8px 16px;
+    font-size: 1.3em;
+}
 
 #menu {
     display: inline-block;
@@ -133,14 +155,15 @@ h2 {
     margin-right: 10px;
     margin-bottom: 10px;
 }
-    .btn:hover {
-        background-color: #2980b9;
-    }
 
-    .btn.hell {
-        color: #2c3e50;
-        background-color: #ecf0f1;
-    }
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.btn.hell {
+    color: #2c3e50;
+    background-color: #ecf0f1;
+}
 
 
 .tetro {
@@ -154,8 +177,9 @@ h2 {
     margin: 0;
     opacity: 0.3;
 }
-    .tetro.gefuellt {
-      opacity: 1;
-      background-color: #feca57;
-      border-color: #ff9f43;
-    }
+
+.tetro.gefuellt {
+    opacity: 1;
+    background-color: var(--tetro-t-color);
+    border-color: var(--tetro-t-schatten-color);
+}

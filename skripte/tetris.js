@@ -1,3 +1,4 @@
+// Standartwerte, können später überschrieben werden.
 const defaultOptions = {
     hoehe: 16,
     breite: 10,
@@ -99,9 +100,29 @@ class Tetris {
 
     // Tetromino auf `welt` ablegen
     tetroAblegen() {
-        if (this.tetroEinfrieren) {
-            this.tetroEinfrieren.call(this);
-        }
+        const { spalte, zeile, muster } = this.tetro;
+
+        this.welt = this.welt.map((spaltenList, y) => {
+            const tetroZeile = (y - zeile);
+
+            return spaltenList.map((weltZelle, x) => {
+                const tetroSpalte = (x - spalte);
+
+                if (tetroZeile < 0
+                    || tetroZeile >= muster.length
+                    || tetroSpalte < 0
+                    || tetroSpalte >= muster.length) {
+                    return weltZelle;
+                }
+
+                const tetroZelle = muster[tetroZeile][tetroSpalte];
+
+                return tetroZelle !== 0 ? tetroZelle : weltZelle;
+            });
+
+        });
+
+        this.aktualisieren();
 
         this.tetro = this.naechstesTetro;
         this.naechstesTetro = zufaelligenBaustein();
