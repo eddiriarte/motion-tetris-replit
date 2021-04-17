@@ -18,6 +18,13 @@ class Tetromino {
         this.zeile = (this.zeile + 1);
     }
 
+    /**
+     * @TODO Implementiere diese Methode zu ende.
+     *       - Keep it simple, aber du darfst auf kollisionen Prüfen, s. `kollidiert`
+     */
+    drehen(welt) {
+    }
+
     // prüft ob das Tetromino sich auf dem gegebenen Koordinaten befindet.
     istAufZelle(zeile, spalte) {
         return !this.istNichtAufZelle(zeile, spalte);
@@ -34,6 +41,7 @@ class Tetromino {
             || spalte >=  (this.spalte + this.muster.length);
     }
 
+    // gibt die Zelle vom Tetromuster zurück welche sich auf dem gegebenen Koordinaten befindet.
     zelle(zeile, spalte) {
         const y = zeile - this.zeile;
         const x = spalte - this.spalte;
@@ -41,4 +49,15 @@ class Tetromino {
         return this.muster[y][x];
     }
 
+    kannNachLinks(welt) {
+        return !kollidiertNachLinks(welt, this);
+    }
+
+    kannNachRechts(welt) {
+        return !kollidiertNachRechts(welt, this);
+    }
+
+    kannNachUnten(welt) {
+        return !kollidiertNachUnten(welt, this);
+    }
 }

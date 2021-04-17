@@ -23,13 +23,13 @@
 <body>
 
     <div id="seite">
-        <h2>Kollisionen am Rand</h2>
+        <h2>Spielschleife</h2>
 
         <article class="beschreibung">
-            <p>Während des Spiels sollen die Steine nicht aus dem Spielrand fallen, dafür mussn Kollisionsregel erstellt werden.</p>
+            <p>Die Tetris Figuren bewegen sich automatisch immer nach unten. Diese Anziehungskraft soll in unsere Spielwelt eingebaut werden.</p>
             <p>
                 <strong>TODO:</strong>
-                Implementiere den fehlenden Code in den Methoden `tetroNachLinksBewegen`, `tetroNachRechtsBewegen` und `tetroNachUntenSchieben`.<br>
+                Implementiere mit Hilfe der JS-Funktionen `setTimeout` oder `setInterval` eine endlose Schleife, die das Tetromino um eine Zeile nach unten schiebt.<br>
             </p>
 
         </article>
@@ -44,8 +44,6 @@
                 <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
                 <br>
                 <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
-                <br>
-                <button class="btn" onclick="reset()">Wiederherstellen</button>
             </section>
 
 
@@ -53,6 +51,8 @@
     </div>
 
     <script src="skripte/figuren.js"></script>
+    <script src="skripte/welt.js"></script>
+    <script src="skripte/kollision.js"></script>
     <script src="skripte/tetromino.js"></script>
     <script src="script.js"></script>
 
