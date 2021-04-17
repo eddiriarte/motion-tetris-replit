@@ -23,15 +23,16 @@
 <body>
 
     <div id="seite">
-        <h2>Farbige Tetromino</h2>
+        <h2>Gefuellte Zeilen loeschen</h2>
 
         <article class="beschreibung">
-            <p>Unicolor? Bereits in den schwarzweiße Versionen von Tetris konnte man die Bausteine im Stil voneinander unterscheiden. Leider ist aktuell in unsere version alles in einer Farbe.</p>
+            <p>Wenn lückenlose Zeilen bebaut werden, sollen die Zeilen verschwinden und somit mehr Platz für neue Steine auf dem Feld entstehen.</p>
             <p>
                 <strong>TODO:</strong>
-                Erweitere die Stylingregeln in der Datei `style.css`. Der Element-inspector Tool in deinem Browser kann dabei sehr hilfreich sein(rechtsklick "Element untersuchen").
+                Erweitere die entsprechende Funktion `zeileAbbauen`, um volle Zeilen verschwinden lassen.<br>
+                Eine kleine Verzögerung wird dafür sorgen, dass die Zeilen effektvoll annihiliert werden.
+                Vergiss nicht eine leere Zeile ganz oben hinzuzufügen.
             </p>
-
         </article>
 
         <div class="container">
@@ -40,12 +41,9 @@
                 <div id="welt" class="raster"></div>
             </section>
 
-            <section class="spalte auswahl">
-                <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
-                <br>
-                <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
+            <section class="spalte aktionen">
+                <div id="vorschau" class="raster"></div>
             </section>
-
 
         </div>
     </div>

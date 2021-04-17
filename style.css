@@ -13,20 +13,22 @@
 
 
 :root {
-    --tetro-t-color: #feca57;
-    --tetro-t-schatten-color: #ff9f43;
-    --tetro-s-color: #feca57;
-    --tetro-s-schatten-color: #ff9f43;
-    --tetro-z-color: #feca57;
-    --tetro-z-schatten-color: #ff9f43;
-    --tetro-o-color: #feca57;
-    --tetro-o-schatten-color: #ff9f43;
+    --tetro-color: #ecf0f1;
+    --tetro-schatten-color: #bdc3c7;
+    --tetro-t-color: #ff6b6b;
+    --tetro-t-schatten-color: #ee5253;
+    --tetro-s-color: #1dd1a1;
+    --tetro-s-schatten-color: #10ac84;
+    --tetro-z-color: #48dbfb;
+    --tetro-z-schatten-color: #0abde3;
+    --tetro-o-color: #ff9ff3;
+    --tetro-o-schatten-color: #f368e0;
     --tetro-i-color: #feca57;
     --tetro-i-schatten-color: #ff9f43;
-    --tetro-j-color: #feca57;
-    --tetro-j-schatten-color: #ff9f43;
-    --tetro-l-color: #feca57;
-    --tetro-l-schatten-color: #ff9f43;
+    --tetro-j-color: #f3a683;
+    --tetro-j-schatten-color: #f19066;
+    --tetro-l-color: #c8d6e5;
+    --tetro-l-schatten-color: #8395a7;
 }
 
 
@@ -180,6 +182,41 @@ h2 .punkte {
 
 .tetro.gefuellt {
     opacity: 1;
+    background-color: var(--tetro-color);
+    border-color: var(--tetro-schatten-color);
+}
+
+.tetro.I {
+    background-color: var(--tetro-i-color);
+    border-color: var(--tetro-i-schatten-color);
+}
+
+.tetro.T {
     background-color: var(--tetro-t-color);
     border-color: var(--tetro-t-schatten-color);
+}
+
+.tetro.O {
+    background-color: var(--tetro-o-color);
+    border-color: var(--tetro-o-schatten-color);
+}
+
+.tetro.L {
+    background-color: var(--tetro-l-color);
+    border-color: var(--tetro-l-schatten-color);
+}
+
+.tetro.J {
+    background-color: var(--tetro-j-color);
+    border-color: var(--tetro-j-schatten-color);
+}
+
+.tetro.S {
+    background-color: var(--tetro-s-color);
+    border-color: var(--tetro-s-schatten-color);
+}
+
+.tetro.Z {
+    background-color: var(--tetro-z-color);
+    border-color: var(--tetro-z-schatten-color);
 }

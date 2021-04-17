@@ -27,6 +27,7 @@ class Tetris {
 
         this.welt = weltErzeugen(this.hoehe, this.breite);
         weltContainerInitialisieren(this.welt, this.weltZellenPrefix);
+        tetroVorschauContainerInitialisieren(this.vorschauZellenPrefix);
     }
 
     // Spiel starten
@@ -45,6 +46,7 @@ class Tetris {
     // Darstellungskomponente aktualisieren
     aktualisieren() {
         weltRasterAktualisieren(this.welt, this.tetro, this.weltZellenPrefix);
+        tetroVorschauAktualisieren(this.naechstesTetro, this.vorschauZellenPrefix);
     }
 
     // Loop ausführen
@@ -100,32 +102,19 @@ class Tetris {
 
     // Tetromino auf `welt` ablegen
     tetroAblegen() {
-        const { spalte, zeile, muster } = this.tetro;
 
-        this.welt = this.welt.map((spaltenList, y) => {
-            const tetroZeile = (y - zeile);
-
-            return spaltenList.map((weltZelle, x) => {
-                const tetroSpalte = (x - spalte);
-
-                if (tetroZeile < 0
-                    || tetroZeile >= muster.length
-                    || tetroSpalte < 0
-                    || tetroSpalte >= muster.length) {
-                    return weltZelle;
-                }
-
-                const tetroZelle = muster[tetroZeile][tetroSpalte];
-
-                return tetroZelle !== 0 ? tetroZelle : weltZelle;
-            });
-
-        });
+        this.welt = tetroAufWeltAblegen(this.welt, this.tetro);
+        this.gefuellteZeilenLoeschen();
 
         this.aktualisieren();
 
         this.tetro = this.naechstesTetro;
         this.naechstesTetro = zufaelligenBaustein();
+    }
+
+    // Gefüllte Zeilen löschen
+    gefuellteZeilenLoeschen() {
+        this.zeileAbbauen.call(this);
     }
 
     tastenEventsBehandeln() {
