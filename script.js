@@ -1,118 +1,35 @@
-/**
- * Breite des Weltrasters
- *
- * @type {number}
- */
-const breite = 9;
+const tetris = new Tetris();
 
 /**
- * Höhe des Weltrasters
- *
- * @type {number}
+ * Tetromino auf `welt` ablegen/einfrieren
+ *    - Das object `this` hat viele `Tetris` eigenschaften und ermöglicht unter andere den `welt` Raster.
+ *    - Versuche die Werte im Raster durch Zahlen `> 0` zu ersetzen...
+ *    -
  */
-const hoehe = 15;
+tetris.tetroEinfrieren = function () {
+    const { spalte, zeile, muster } = this.tetro;
 
-/**
- * Weltraster
- * @type {null}
- */
-let welt =  [];
+    const neueWelt = this.welt;
 
-/**
- * Aktueller Baustein/Tetromino das auf dem Raster fällt.
- *
- * @type {Tetromino}
- */
-let tetro = null;
+    for (let y = 0; y < this.welt.length; y++) {
 
+        for (let x = 0; x < this.welt[0].length; x++) {
 
-// Hier kommt dein Code:
-//    - alle 800 millisekunden soll der Baustein nach unten geschoben werden
-//    - Recherchiere die Javascript funktionen (`setTimeout`, `setInterval`)
-//    - wenn die Position des Tetrominos größer ist als die Höhe des
-//      Spielfelds, dann soll ein neuer Tetromino ins Spiel gebracht werden
+            if (y < 0 || y >= muster.length || x < 0 || x >= muster.length) {
+                //
+            }
 
+            const weltZelle = this.welt[y][x];
+            const tetroZelle = this.tetro.zelle(y, x);
 
+            console.log(`👻🎯👻 Zellenwerte für [${y},${x}]'`, {weltZelle}, {tetroZelle});
 
-
-
-
-
-
-
-//----
-
-/**
- * =================================================================
- * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
- * =================================================================
- */
-
-
-const tetroNachLinksBewegen = () => {
-    if (tetro.kannNachLinks(welt)) {
-        tetro.nachLinks();
-    }
-};
-
-const tetroNachRechtsBewegen = () => {
-    if (tetro.kannNachRechts(welt)) {
-        tetro.nachRechts();
-    }
-};
-
-const tetroNachUntenSchieben = () => {
-    if (tetro.kannNachUnten(welt)) {
-        tetro.nachUnten();
-    }
-};
-
-const tastenEventsBehandeln = (event) => {
-    switch (event.code) {
-        case 'ArrowLeft':
-            tetroNachLinksBewegen();
-            break;
-        case 'ArrowRight':
-            tetroNachRechtsBewegen();
-            break;
-        case 'ArrowDown':
-            tetroNachUntenSchieben();
-            break;
-        default:
-            console.log(event.code);
+        }
     }
 
-    // ------
-    rasterAktualisieren();
-    positionZeigen();
+    this.welt = neueWelt;
+
+    this.aktualisieren();
 };
 
-document.addEventListener('keyup', tastenEventsBehandeln);
-
-// Generiert ein zufälligen Tetromino-Objekt
-const naechstesBaustein = () => {
-    const steine = Object.keys(Bausteine);
-    const zufaelligenStein = steine[Math.floor(Math.random() * steine.length)];
-    const tetromino = Bausteine[zufaelligenStein];
-
-    tetro = new Tetromino(1 - tetromino.length, 3, tetromino);
-};
-
-const positionZeigen = () => {
-    document.querySelector('#tetro-zeile span').innerText = tetro.zeile;
-    document.querySelector('#tetro-spalte span').innerText = tetro.spalte;
-}
-
-const darstellungAktualisieren = () => {
-    weltRasterAktualisieren(welt, tetro);
-    positionZeigen();
-}
-
-const starten = () => {
-    welt = weltErzeugen(hoehe, breite);
-    weltContainerInitialisieren(welt);
-    naechstesBaustein();
-    darstellungAktualisieren();
-}
-
-starten();
+tetris.starten();
