@@ -50,19 +50,8 @@ class Tetris {
         tetroVorschauAktualisieren(this.naechstesTetro, this.vorschauZellenPrefix);
     }
 
-    /**
-     * @TODO finde den Fehler
-     */
     gameOver() {
-        if (this.gestartet) {
-            return;
-        }
-
-        this.gestartet = false;
-
-        this.stopZeitSchleife();
-        document.removeEventListener('keyup', this.tastenLauscher);
-        gestenHandlerLoeschen();
+        this.beiGameOver.call(this);
     }
 
     // Loop ausführen
@@ -118,6 +107,10 @@ class Tetris {
 
     // Tetromino auf `welt` ablegen
     tetroAblegen() {
+        if (this.tetro.zeile <= 0 && this.tetro.muster[0].some((spalte) => spalte !== 0)) {
+            this.gameOver();
+            return;
+        }
 
         this.welt = tetroAufWeltAblegen(this.welt, this.tetro);
         this.gefuellteZeilenLoeschen();
@@ -175,8 +168,31 @@ class Tetris {
         this.aktualisieren();
     }
 
+
+
     gestenEventsBehandeln(geste) {
-        this.beiGestenSteuerungEreignis.call(this, [geste]);
+        console.log(geste.direction);
+
+        switch(geste.direction) {
+            case 'Long up':
+            case 'Up':
+                this.tetro.drehen(this.welt);
+                break;
+            case 'Long left':
+            case 'Left':
+                this.tetroNachLinksBewegen();
+                break;
+            case 'Long right':
+            case 'Right':
+                this.tetroNachRechtsBewegen();
+                break;
+            case 'Long down':
+            case 'Down':
+                this.tetroNachUntenSchieben();
+                break;
+            default:
+                console.log(geste.direction);
+        }
 
         this.aktualisieren();
     }

@@ -1,18 +1,18 @@
 const tetris = new Tetris();
 
-tetris.beiGestenSteuerungEreignis = function (geste) {
-    console.log(geste.direction);
+/**
+ * @TODO finde den Fehler
+ */
+tetris.beiGameOver = function () {
+    if (this.gestartet) {
+        return;
+    }
 
-    // Hier kommt kein Code:
+    this.gestartet = false;
 
-
-
-
-
-
-
-
-    // ----
+    this.stopZeitSchleife();
+    document.removeEventListener('keyup', this.tastenLauscher);
+    gestenHandlerLoeschen();
 };
 
 tetris.starten();
