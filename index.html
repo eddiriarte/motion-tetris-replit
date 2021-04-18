@@ -23,15 +23,18 @@
 <body>
 
     <div id="seite">
-        <h2>Gefuellte Zeilen loeschen</h2>
+        <h2>Gestensteuerung</h2>
 
         <article class="beschreibung">
-            <p>Wenn lückenlose Zeilen bebaut werden, sollen die Zeilen verschwinden und somit mehr Platz für neue Steine auf dem Feld entstehen.</p>
+            <p>
+                Wir implementieren nun die Gestensteuerung, diese funktioniert mit deiner Webcam.<br>
+                Die Videoaufnahme wird verarbeitet und Bewegungen werden erkannt.
+                Die entsprechende Fälle können analog zu den Tastatur-KeyCodes behandelt werden.<br>
+                Aus Sicherheitsgründen sollte die Webcam das niemals automatisch gestartet werden.
+            </p>
             <p>
                 <strong>TODO:</strong>
-                Erweitere die entsprechende Funktion `zeileAbbauen`, um volle Zeilen verschwinden lassen.<br>
-                Eine kleine Verzögerung wird dafür sorgen, dass die Zeilen effektvoll annihiliert werden.
-                Vergiss nicht eine leere Zeile ganz oben hinzuzufügen.
+                Binde das Modul `GestenAdapter` in der Anwendung an. Siehe die implementierung der Tastenevents an.
             </p>
         </article>
 
@@ -42,16 +45,30 @@
             </section>
 
             <section class="spalte aktionen">
+
                 <div id="vorschau" class="raster"></div>
+
+                <section id="steuerung">
+                    <button id="kamera-schalter" class="kreis-btn" onclick="kameraSchalterGedruckt()">
+                        <img class="aus" src="../bilder/twotone_videocam_off_black_48dp.png" alt="ausgeschaltet">
+                        <img class="an" src="../bilder/twotone_videocam_white_48dp.png" alt="eingeschaltet">
+                    </button>
+                </section>
+
+                <div id="gest"></div>
             </section>
+
 
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/eiriarte-mendez/gest.js@0.5.4/src/gest.min.js"></script>
 
     <script src="skripte/figuren.js"></script>
     <script src="skripte/welt.js"></script>
     <script src="skripte/kollision.js"></script>
     <script src="skripte/tetromino.js"></script>
+    <script src="skripte/gesten-adapter.js"></script>
     <script src="skripte/tetris.js"></script>
     <script src="script.js"></script>
 

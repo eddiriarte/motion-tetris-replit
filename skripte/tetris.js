@@ -36,17 +36,33 @@ class Tetris {
         this.tetro = zufaelligenBaustein();
         this.naechstesTetro = zufaelligenBaustein();
 
-        this.tastenLauscher = this.tastenEventsBehandeln.bind(this);
-        document.addEventListener('keyup', this.tastenLauscher);
-
         this.spielZeitSchleife();
         this.aktualisieren();
+
+        this.tastenLauscher = this.tastenEventsBehandeln.bind(this);
+        document.addEventListener('keyup', this.tastenLauscher);
+        gestenHandlerSetzen(this.gestenEventsBehandeln.bind(this));
     }
 
     // Darstellungskomponente aktualisieren
     aktualisieren() {
         weltRasterAktualisieren(this.welt, this.tetro, this.weltZellenPrefix);
         tetroVorschauAktualisieren(this.naechstesTetro, this.vorschauZellenPrefix);
+    }
+
+    /**
+     * @TODO finde den Fehler
+     */
+    gameOver() {
+        if (this.gestartet) {
+            return;
+        }
+
+        this.gestartet = false;
+
+        this.stopZeitSchleife();
+        document.removeEventListener('keyup', this.tastenLauscher);
+        gestenHandlerLoeschen();
     }
 
     // Loop ausführen
@@ -83,7 +99,7 @@ class Tetris {
     }
 
     tetroNachUntenBewegen() {
-        console.log('tetroNachUntenBewegen')
+        console.log('tetroNachUntenBewegen');
     }
 
     // Tetromino solange nach unten verschieben bis es kollidiert.
@@ -114,9 +130,30 @@ class Tetris {
 
     // Gefüllte Zeilen löschen
     gefuellteZeilenLoeschen() {
-        this.zeileAbbauen.call(this);
+        const volleZeilen = this.welt.reduce((_volleZeilen, spaltenListe, zeile) => {
+            if (spaltenListe.some((spalte) => spalte === 0)) {
+                return _volleZeilen;
+            }
+
+            return [..._volleZeilen, zeile];
+        }, []);
+
+        const tetris = this;
+        volleZeilen.forEach((index, counter) => {
+            tetris.welt.splice(index, 1, (new Array(tetris.breite)).fill(10));
+            tetris.aktualisieren();
+
+            setTimeout(() => {
+                const neueZeile = (new Array(tetris.breite)).fill(0);
+                tetris.welt.splice(index, 1);
+                tetris.welt = [neueZeile, ...tetris.welt];
+
+                tetris.aktualisieren();
+            }, 50 + (50 * counter));
+        });
     }
 
+    // Behandlung der Tastatur-Events
     tastenEventsBehandeln() {
         switch (event.keyCode) {
             case 37:
@@ -138,4 +175,9 @@ class Tetris {
         this.aktualisieren();
     }
 
+    gestenEventsBehandeln(geste) {
+        this.beiGestenSteuerungEreignis.call(this, [geste]);
+
+        this.aktualisieren();
+    }
 }

@@ -114,9 +114,24 @@ h2 .punkte {
 
 #gest {
     width: 480px;
-    height: 320px;
+    height: 300px;
 }
 
+#steuerung {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+#tetris-song {
+    display: none;
+}
+
+#hidden-gest {
+    position: absolute;
+    left: -2000px;
+}
 
 /****************************************************************/
 /**    TETROMINOS                                              **/
@@ -166,6 +181,80 @@ h2 .punkte {
     color: #2c3e50;
     background-color: #ecf0f1;
 }
+
+
+
+.kreis-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 5px #bbb;
+    position: relative;
+
+    outline: none;
+}
+
+.kreis-btn .an {
+    display: none;
+}
+
+.kreis-btn .aus {
+    display: block;
+}
+
+.kreis-btn:hover {
+     background-color: #bbb;
+ }
+
+.kreis-btn.aktiv {
+    background-color: #3498db;
+    box-shadow: 0px 5px #2980b9;
+}
+
+.kreis-btn.aktiv:hover {
+     background-color: #2980b9;
+ }
+
+.kreis-btn.aktiv .an {
+    display: block;
+}
+
+.kreis-btn.aktiv .aus {
+    display: none;
+}
+
+.kreis-btn img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.eingabe {
+    outline: 0;
+    border: 1px solid #ecf0f1;
+    padding: 8px 10px;
+    font-size: 1.3em;
+    width: calc(50% - 20px);
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.eingabe:focus {
+     border-color: #2980b9;
+ }
+
+.eingabe-beschreibung {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+
+
 
 
 .tetro {
