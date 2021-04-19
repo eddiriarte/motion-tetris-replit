@@ -1,20 +1,30 @@
+
+
+const musikSchalter = document.getElementById('musik-schalter');
+
+const songPlayer = document.getElementById('tetris-song');
+
+let musikAn = false;
+
+const musikSchalterGedruckt = () => {
+    if (!musikAn) {
+        musikAn = true;
+        songPlayer.play();
+        musikSchalter.classList.add('aktiv');
+    } else {
+        musikAn = false;
+        songPlayer.pause();
+        musikSchalter.classList.remove('aktiv');
+    }
+};
+
+
+
+/**
+ * =================================================================
+ * IHR BRAUCH EUCH NICHT UM DIESEN TEIL ZU KÜMMERN(IM MOMENT)!
+ * =================================================================
+ */
+
 const tetris = new Tetris();
-
-tetris.berechneAktuellenLevel = function () {
-
-    // TODO: Erhöhe den Level um eins alle 5000 Punkte.
-    return this.level;
-
-};
-
-
-tetris.levelGeschwindigkeit = function () {
-
-    // TODO: Ersetze die festgelegte 800ms durch folgende mathematische Funktion:
-    // f(x) = 1300ms / ( x * 0.95 ) + 70ms , wobei 'x' das aktuelle level ist.
-    return 800;
-
-};
-
-
 tetris.starten();

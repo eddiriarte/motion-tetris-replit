@@ -23,16 +23,13 @@
 <body>
 
     <div id="seite">
-        <h2>Next Level</h2>
+        <h2>Tetris Songs</h2>
 
         <article class="beschreibung">
-            <p>
-                Immer wenn der Spieler weitere 5000 Punkte eingesammelt hat, soll er in das nächste Level befördert werden.<br>
-                Mit jedem Level erhöht sich die Geschwindigkeit, mit dem die Bausteine herabfallen.
-            </p>
+            <p>Ohne Musik, keine Stimmung</p>
             <p>
                 <strong>TODO:</strong>
-                Implementiere die richtigen mathematische Funktionen, um die Geschwindigkeit des Spiels bei jedem Leveländerung zu erhöhen.
+                Die Musiktaste scheint kaputt zu sein, finde den Fehler in der Datei `index.html`.
             </p>
         </article>
 
@@ -53,13 +50,23 @@
 
                 <section id="steuerung">
                     <button id="kamera-schalter" class="kreis-btn" onclick="kameraSchalterGedruckt()">
-                        <img class="aus" src="../bilder/twotone_videocam_off_black_48dp.png" alt="ausgeschaltet">
-                        <img class="an" src="../bilder/twotone_videocam_white_48dp.png" alt="eingeschaltet">
+                        <img class="aus" src="../bilder/twotone_videocam_off_black_48dp.png" alt="Video ausgeschaltet">
+                        <img class="an" src="../bilder/twotone_videocam_white_48dp.png" alt="Video eingeschaltet">
+                    </button>
+
+                    <!-- TODO: rufe die richtige Funktion um die Musik zu spielen -->
+                    <button id="musik-schalter" class="kreis-btn">
+                        <img class="aus" src="../bilder/twotone_volume_off_black_48dp.png" alt="Musik ausgeschaltet">
+                        <img class="an" src="../bilder/twotone_volume_up_white_48dp.png" alt="Musik eingeschaltet">
                     </button>
                 </section>
 
                 <div id="gest"></div>
             </section>
+
+            <audio loop id="tetris-song" controls="false">
+                <source src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Tetris_theme.ogg" type="audio/ogg">
+            </audio>
         </div>
     </div>
 

@@ -85,8 +85,13 @@ class Tetris {
         this.aktualisieren();
         this.zeitSchleife = setTimeout(
             this.spielZeitSchleife.bind(this),
-            this.levelGeschwindigkeit.call(this)
+            this.levelGeschwindigkeit()
         );
+    }
+
+    // f(x) = 1300 / ( x * 0.95 ) + 70 , wobei 'x' das aktuelle level ist.
+    levelGeschwindigkeit() {
+        return Math.floor(1300 / ( this.level * 0.95 ) + 70);
     }
 
     // Loop stoppen
@@ -133,10 +138,13 @@ class Tetris {
             return;
         }
 
+        this.punkte += 10;
+
+        // f(x) = 1 + (x / 2000) , wobei 'x' den aktuellen Highscore ist.
+        this.level = Math.floor(1 + ( this.punkte / 2000));
+
         this.welt = tetroAufWeltAblegen(this.welt, this.tetro);
         this.gefuellteZeilenLoeschen();
-
-        this.level = this.berechneAktuellenLevel.call(this);
 
         this.aktualisieren();
 
