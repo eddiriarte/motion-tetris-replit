@@ -1,6 +1,13 @@
+
 const weltContainer = document.getElementById('welt');
 
 const tetroVoschauContainer = document.getElementById('vorschau');
+
+const punkteContainer = document.getElementById('punkte');
+
+const zeilenAnzahlContainer = document.getElementById('zeilen-total');
+
+const levelContainer = document.getElementById('level');
 
 // Erzeugt die `welt` Matrix
 const weltErzeugen = (hoehe, breite) => {
@@ -36,8 +43,7 @@ const tetroStyleNamen = {
     4: 'J',
     5: 'S',
     6: 'Z',
-    7: 'T',
-    10: 'FULL',
+    7: 'T'
 };
 
 // aktualisiert die Darstellung auf dem Browser
@@ -101,3 +107,26 @@ const tetroAufWeltAblegen = (welt, { spalte, zeile, muster }) => {
 
     });
 };
+
+const findeVolleZeilen = (welt) => welt.reduce((_volleZeilen, spaltenListe, zeile) => {
+    if (spaltenListe.some((spalte) => spalte === 0)) {
+        return _volleZeilen;
+    }
+
+    return [..._volleZeilen, zeile];
+}, []);
+
+// löscht eine Zeile im gegebenen `index` und fügt eine neue Zeile am Anfang hinzu.
+const loescheWeltZeile = (index, tetris) => {
+    const neueZeile = (new Array(tetris.breite)).fill(0);
+    tetris.welt.splice(index, 1);
+    tetris.welt = [neueZeile, ...tetris.welt];
+    tetris.aktualisieren();
+}
+
+// aktualisiert alle Anzeigen zum Spiel mit den gegebenen Werte.
+const spielAnzeigenAktualisieren = (punkte, zeilen, level) => {
+    punkteContainer.innerText = `00000000${punkte}`.substr(-7);
+    zeilenAnzahlContainer.innerText = `00000000${zeilen}`.substr(-7);
+    levelContainer.innerText = `00000000${level}`.substr(-7);
+}

@@ -32,7 +32,15 @@ class Tetris {
 
     // Spiel starten
     starten() {
+        if (this.gestartet) {
+            return;
+        }
+
         this.gestartet = true;
+
+        this.punkte = 0;
+        this.zeilenAnzahl = 0;
+        this.level = 1;
         this.tetro = zufaelligenBaustein();
         this.naechstesTetro = zufaelligenBaustein();
 
@@ -48,10 +56,19 @@ class Tetris {
     aktualisieren() {
         weltRasterAktualisieren(this.welt, this.tetro, this.weltZellenPrefix);
         tetroVorschauAktualisieren(this.naechstesTetro, this.vorschauZellenPrefix);
+        spielAnzeigenAktualisieren(this.punkte, this.zeilenAnzahl, this.level);
     }
 
     gameOver() {
-        this.beiGameOver.call(this);
+        if (!this.gestartet) {
+            return;
+        }
+
+        this.gestartet = false;
+
+        this.stopZeitSchleife();
+        document.removeEventListener('keyup', this.tastenLauscher);
+        gestenHandlerLoeschen();
     }
 
     // Loop ausführen
@@ -123,27 +140,10 @@ class Tetris {
 
     // Gefüllte Zeilen löschen
     gefuellteZeilenLoeschen() {
-        const volleZeilen = this.welt.reduce((_volleZeilen, spaltenListe, zeile) => {
-            if (spaltenListe.some((spalte) => spalte === 0)) {
-                return _volleZeilen;
-            }
-
-            return [..._volleZeilen, zeile];
-        }, []);
-
         const tetris = this;
-        volleZeilen.forEach((index, counter) => {
-            tetris.welt.splice(index, 1, (new Array(tetris.breite)).fill(10));
-            tetris.aktualisieren();
+        const volleZeilen = findeVolleZeilen(this.welt);
 
-            setTimeout(() => {
-                const neueZeile = (new Array(tetris.breite)).fill(0);
-                tetris.welt.splice(index, 1);
-                tetris.welt = [neueZeile, ...tetris.welt];
-
-                tetris.aktualisieren();
-            }, 50 + (50 * counter));
-        });
+        this.loescheZeilen.call(this, [volleZeilen]);
     }
 
     // Behandlung der Tastatur-Events
@@ -167,8 +167,6 @@ class Tetris {
 
         this.aktualisieren();
     }
-
-
 
     gestenEventsBehandeln(geste) {
         console.log(geste.direction);

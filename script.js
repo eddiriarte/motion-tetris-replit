@@ -1,18 +1,17 @@
 const tetris = new Tetris();
 
-/**
- * @TODO finde den Fehler
- */
-tetris.beiGameOver = function () {
-    if (this.gestartet) {
-        return;
+tetris.loescheZeilen = function (volleZeilen) {
+    for (let x = 0; x < volleZeilen.length; x++) {
+        const zeile = volleZeilen[x];
+
+        this.welt.splice(zeile, 1, (new Array(tetris.breite)).fill(10));
+
+        // TODO: Addiere 100 Punkte zum aktuellen Punktestand und erhöhe den Zeilenzähler.
+
+        this.aktualisieren();
+        setTimeout(() => { loescheWeltZeile(zeile, this); }, 70 + (70 * x));
     }
-
-    this.gestartet = false;
-
-    this.stopZeitSchleife();
-    document.removeEventListener('keyup', this.tastenLauscher);
-    gestenHandlerLoeschen();
 };
+
 
 tetris.starten();

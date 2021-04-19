@@ -23,13 +23,13 @@
 <body>
 
     <div id="seite">
-        <h2>Game Over</h2>
+        <h2>Score - Statistiken</h2>
 
         <article class="beschreibung">
-            <p>Wenn das Feld voll ist, sollte das Spiel enden... Zur Zeit kommen immer neue Bausteine aufs Spielfeld.</p>
+            <p>Es gibt nun im Template entsprechende Anzeigen für `Punkte`, `Zeilen` und `Level`, sorge dafür dass diese stets aktualisiert werden.</p>
             <p>
                 <strong>TODO:</strong>
-                Finde den Fehler in der Methode `beiGameOver`, damit das Spiel zurückgesetzt werden kann.
+                Aktualisiere den Score an den richtigen Stellen im Code.
             </p>
         </article>
 
@@ -40,6 +40,11 @@
             </section>
 
             <section class="spalte aktionen">
+                <h2><span id="punkte" class="punkte">00000000</span> Score</h2>
+
+                <h2><span id="zeilen-total" class="punkte">00000000</span> Zeilen</h2>
+
+                <h2><span id="level" class="punkte">00000000</span> Level</h2>
 
                 <div id="vorschau" class="raster"></div>
 
