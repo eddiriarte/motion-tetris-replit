@@ -1,16 +1,19 @@
 const tetris = new Tetris();
 
-tetris.loescheZeilen = function (volleZeilen) {
-    for (let x = 0; x < volleZeilen.length; x++) {
-        const zeile = volleZeilen[x];
+tetris.berechneAktuellenLevel = function () {
 
-        this.welt.splice(zeile, 1, (new Array(tetris.breite)).fill(10));
+    // TODO: Erhöhe den Level um eins alle 5000 Punkte.
+    return this.level;
 
-        // TODO: Addiere 100 Punkte zum aktuellen Punktestand und erhöhe den Zeilenzähler.
+};
 
-        this.aktualisieren();
-        setTimeout(() => { loescheWeltZeile(zeile, this); }, 70 + (70 * x));
-    }
+
+tetris.levelGeschwindigkeit = function () {
+
+    // TODO: Ersetze die festgelegte 800ms durch folgende mathematische Funktion:
+    // f(x) = 1300ms / ( x * 0.95 ) + 70ms , wobei 'x' das aktuelle level ist.
+    return 800;
+
 };
 
 

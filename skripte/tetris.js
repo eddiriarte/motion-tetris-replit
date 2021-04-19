@@ -1,3 +1,4 @@
+
 // Standartwerte, können später überschrieben werden.
 const defaultOptions = {
     hoehe: 16,
@@ -82,7 +83,10 @@ class Tetris {
         }
 
         this.aktualisieren();
-        this.zeitSchleife = setTimeout(this.spielZeitSchleife.bind(this), 800);
+        this.zeitSchleife = setTimeout(
+            this.spielZeitSchleife.bind(this),
+            this.levelGeschwindigkeit.call(this)
+        );
     }
 
     // Loop stoppen
@@ -132,6 +136,8 @@ class Tetris {
         this.welt = tetroAufWeltAblegen(this.welt, this.tetro);
         this.gefuellteZeilenLoeschen();
 
+        this.level = this.berechneAktuellenLevel.call(this);
+
         this.aktualisieren();
 
         this.tetro = this.naechstesTetro;
@@ -143,7 +149,15 @@ class Tetris {
         const tetris = this;
         const volleZeilen = findeVolleZeilen(this.welt);
 
-        this.loescheZeilen.call(this, [volleZeilen]);
+        volleZeilen.forEach((index, counter) => {
+            tetris.welt.splice(index, 1, (new Array(tetris.breite)).fill(10));
+
+            this.punkte += (this.breite * 20);
+            this.zeilenAnzahl++;
+
+            tetris.aktualisieren();
+            setTimeout(() => { loescheWeltZeile(index, this); }, 70 + (70 * counter));
+        });
     }
 
     // Behandlung der Tastatur-Events
