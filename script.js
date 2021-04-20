@@ -14,7 +14,17 @@ const weltErzeugen = () => {
     welt = [];
     
     // Deine Schleifen kommen hier:
-    
+    for (let zeile = 0; zeile < hoehe; zeile++) {
+
+        const zellen = [];
+
+        for (let spalte = 0; spalte < breite; spalte++) {
+            zellen[spalte] = 0;
+        }
+
+        welt[zeile] = zellen;
+    }
+
 };
 
 
