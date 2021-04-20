@@ -40,8 +40,14 @@ const position = {
  */
 const naechstesBaustein = () => {
     const steine = Object.keys(Bausteine);
-    
-    // tetro = /* ...? */
+
+    // Zufällige Zahl zwischen "0 - Anzahl-Steine"
+    const index = Math.floor(Math.random() * steine.length);
+
+    // Name des Steins
+    const key = steine[index];
+
+    tetro = Bausteine[key];
 
     rasterAktualisieren();
 };
