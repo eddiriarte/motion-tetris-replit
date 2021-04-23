@@ -7,6 +7,8 @@ tetris.loescheZeilen = function (volleZeilen) {
         this.welt.splice(zeile, 1, (new Array(tetris.breite)).fill(10));
 
         // TODO: Addiere 100 Punkte zum aktuellen Punktestand und erhöhe den Zeilenzähler.
+        this.punkte += 100
+        this.zeilenAnzahl++
 
         this.aktualisieren();
         setTimeout(() => { loescheWeltZeile(zeile, this); }, 70 + (70 * x));
