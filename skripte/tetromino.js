@@ -41,4 +41,16 @@ class Tetromino {
         return this.muster[y][x];
     }
 
+    kannNachLinks(welt) {
+        return !kollidiertNachLinks(welt, this);
+    }
+
+    kannNachRechts(welt) {
+        return !kollidiertNachRechts(welt, this);
+    }
+
+    kannNachUnten(welt) {
+        return !kollidiertNachUnten(welt, this);
+    }
+
 }
