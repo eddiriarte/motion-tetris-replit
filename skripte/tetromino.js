@@ -28,6 +28,16 @@ class Tetromino {
 
         // ... hier kommt dein Code:
 
+        for (let zeile = 0; zeile < laenge ; zeile++) {
+
+            for (let spalte = 0; spalte < laenge ; spalte++) {
+
+                const querWert = laenge - (1 + spalte);
+
+                neuerMuster[zeile][querWert] = tetro.muster[spalte][zeile]
+            }
+
+        }
 
 
         this.muster = neuerMuster

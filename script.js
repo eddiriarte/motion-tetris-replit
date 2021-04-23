@@ -25,24 +25,6 @@ let welt =  [];
  */
 let tetro = null;
 
-<<<<<<< Updated upstream
-
-// Hier kommt dein Code:
-//    - alle 800 millisekunden soll der Baustein nach unten geschoben werden
-//    - Recherchiere die Javascript funktionen (`setTimeout`, `setInterval`)
-//    - wenn die Position des Tetrominos größer ist als die Höhe des
-//      Spielfelds, dann soll ein neuer Tetromino ins Spiel gebracht werden
-
-
-
-
-
-
-
-
-
-//----
-=======
 const tastenEventsBehandeln = (event) => {
     switch (event.code) {
         case 'ArrowLeft':
@@ -54,11 +36,9 @@ const tastenEventsBehandeln = (event) => {
         case 'ArrowDown':
             tetroNachUntenSchieben();
             break;
-        // case '????':
-        //     ...
-        //     schaue in der Datei 'skripte/tetromino.js', ob da noch was zu machen ist?
-        //     ...
-        //     break;
+        case 'ArrowUp':
+            tetro.drehen(welt);
+            break;
         default:
             console.log(event.code);
     }
@@ -67,7 +47,6 @@ const tastenEventsBehandeln = (event) => {
     rasterAktualisieren();
     positionZeigen();
 };
->>>>>>> Stashed changes
 
 /**
  * =================================================================
