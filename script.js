@@ -30,21 +30,27 @@ const tetroNachLinksBewegen = () => {
     // TODO: prüfen ob die Ränder erreicht wurden.
     //       alternativ kannst du die Prüfung direkt
     //       aus der Klasse Tetromino implementieren.
-    tetro.nachLinks();
+    if (tetro.kannNachLinks()) {
+        tetro.nachLinks();
+    }
 };
 
 const tetroNachRechtsBewegen = () => {
     // TODO: prüfen ob die Ränder erreicht wurden.
     //       alternativ kannst du die Prüfung direkt
     //       aus der Klasse Tetromino implementieren.
-    tetro.nachRechts();
+    if (tetro.kannNachRechts()) {
+        tetro.nachRechts();
+    }
 };
 
 const tetroNachUntenSchieben = () => {
     // TODO: prüfen ob die Ränder erreicht wurden.
     //       alternativ kannst du die Prüfung direkt
     //       aus der Klasse Tetromino implementieren.
-    tetro.nachUnten();
+    if (tetro.kannNachUnten()) {
+        tetro.nachUnten();
+    }
 };
 
 
