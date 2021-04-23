@@ -34,6 +34,34 @@ let tetro = [];
 document.addEventListener('keyup', (event) => {
     // hier kommt dein Code:
 
+    console.log(event.code);
+
+    // Option 1. mit if-Bedingungen:
+    if (event.code == 'ArrowLeft') {
+        tetro.nachLinks();
+    }
+
+    if (event.code == 'ArrowRight') {
+        tetro.nachRechts();
+    }
+
+    if (event.code == 'ArrowDown') {
+        tetro.nachUnten();
+    }
+
+    // Option 2. mit switch-Steuerung
+    switch (event.code) {
+        case 'ArrowLeft':
+            tetro.nachLinks();
+            break;
+        case 'ArrowRight':
+            tetro.nachRechts();
+            break;
+        case 'ArrowDown':
+            tetro.nachUnten();
+            break;
+    }
+
     // ------
     rasterAktualisieren();
     positionZeigen();
