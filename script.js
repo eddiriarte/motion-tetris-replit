@@ -33,11 +33,17 @@ let tetro = null;
 //      Spielfelds, dann soll ein neuer Tetromino ins Spiel gebracht werden
 
 
+setInterval(function () {
 
+    // Wenn der Boden erreicht wurde, werfe ein neuer Stein
+    if (!tetro.kannNachUnten()) {
+        naechstesBaustein();
+    }
 
+    // Schiebe den Tetro nach unten
+    tetro.nachUnten();
 
-
-
+}, 800);
 
 
 //----
