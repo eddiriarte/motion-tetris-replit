@@ -10,7 +10,7 @@
     <meta name="author" content="Eduardo Iriarte">
     <meta name="copyright" content="Eduardo Iriarte">
     <meta name="description"
-        content="Eine simple browserbasierte Version von Tetris, das mit Gesten gesteuert werden kann.">
+          content="Eine simple browserbasierte Version von Tetris, das mit Gesten gesteuert werden kann.">
     <meta name="keywords" content="tetris, spiel, hacker-school, berlin">
 
     <meta http-equiv="content-language" content="de">
@@ -22,39 +22,40 @@
 
 <body>
 
-    <div id="seite">
-        <h2>Spielschleife</h2>
+<div id="seite">
+    <h2>Tetromino drehen</h2>
 
-        <article class="beschreibung">
-            <p>Die Tetris Figuren bewegen sich automatisch immer nach unten. Diese Anziehungskraft soll in unsere Spielwelt eingebaut werden.</p>
-            <p>
-                <strong>TODO:</strong>
-                Implementiere mit Hilfe der JS-Funktionen `setTimeout` oder `setInterval` eine endlose Schleife, die das Tetromino um eine Zeile nach unten schiebt.<br>
-            </p>
+    <article class="beschreibung">
+        <p>Damit die Tetrominos besser gestappelt werden können, mussen diese gedreht werden.</p>
+        <p>
+            <strong>TODO:</strong>
+            Implementiere eine Methode `drehen` in der Klasse Tetromino.
+            Vergiss nicht die Steuerung zu erweitern, sodass mit den Tasten 'Pfeil nach oben' oder 'Leerzeichen' die Steine gedreht werden.
+        </p>
 
-        </article>
+    </article>
 
-        <div class="container">
+    <div class="container">
 
-            <section class="spalte welt">
-                <div id="welt" class="raster"></div>
-            </section>
+        <section class="spalte welt">
+            <div id="welt" class="raster"></div>
+        </section>
 
-            <section class="spalte auswahl">
-                <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
-                <br>
-                <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
-            </section>
+        <section class="spalte auswahl">
+            <label class="eingabe-beschreibung" id="tetro-zeile">Zeile: <span></span></label>
+            <br>
+            <label class="eingabe-beschreibung" id="tetro-spalte">Spalte: <span></span></label>
+        </section>
 
 
-        </div>
     </div>
+</div>
 
-    <script src="skripte/figuren.js"></script>
-    <script src="skripte/welt.js"></script>
-    <script src="skripte/kollision.js"></script>
-    <script src="skripte/tetromino.js"></script>
-    <script src="script.js"></script>
+<script src="skripte/figuren.js"></script>
+<script src="skripte/welt.js"></script>
+<script src="skripte/kollision.js"></script>
+<script src="skripte/tetromino.js"></script>
+<script src="script.js"></script>
 
 </body>
 

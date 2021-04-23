@@ -25,6 +25,7 @@ let welt =  [];
  */
 let tetro = null;
 
+<<<<<<< Updated upstream
 
 // Hier kommt dein Code:
 //    - alle 800 millisekunden soll der Baustein nach unten geschoben werden
@@ -41,12 +42,53 @@ let tetro = null;
 
 
 //----
+=======
+const tastenEventsBehandeln = (event) => {
+    switch (event.code) {
+        case 'ArrowLeft':
+            tetroNachLinksBewegen();
+            break;
+        case 'ArrowRight':
+            tetroNachRechtsBewegen();
+            break;
+        case 'ArrowDown':
+            tetroNachUntenSchieben();
+            break;
+        // case '????':
+        //     ...
+        //     schaue in der Datei 'skripte/tetromino.js', ob da noch was zu machen ist?
+        //     ...
+        //     break;
+        default:
+            console.log(event.code);
+    }
+
+    // ------
+    rasterAktualisieren();
+    positionZeigen();
+};
+>>>>>>> Stashed changes
 
 /**
  * =================================================================
  * IM MOMENT BRAUCH IHR EUCH NICHT UM DIESEN TEIL ZU KÜMMERN!
  * =================================================================
  */
+
+const tetrisSchleife = () => {
+    setTimeout(() => {
+        if ((tetro.zeile + tetro.muster.length) < welt.length) {
+            tetroNachUntenSchieben();
+        } else {
+            naechstesBaustein();
+        }
+
+        rasterAktualisieren();
+        tetrisSchleife();
+    }, 800);
+};
+
+tetrisSchleife();
 
 
 const tetroNachLinksBewegen = () => {
@@ -67,26 +109,6 @@ const tetroNachUntenSchieben = () => {
     }
 };
 
-const tastenEventsBehandeln = (event) => {
-    switch (event.code) {
-        case 'ArrowLeft':
-            tetroNachLinksBewegen();
-            break;
-        case 'ArrowRight':
-            tetroNachRechtsBewegen();
-            break;
-        case 'ArrowDown':
-            tetroNachUntenSchieben();
-            break;
-        default:
-            console.log(event.code);
-    }
-
-    // ------
-    rasterAktualisieren();
-    positionZeigen();
-};
-
 document.addEventListener('keyup', tastenEventsBehandeln);
 
 // Generiert ein zufälligen Tetromino-Objekt
@@ -103,7 +125,7 @@ const positionZeigen = () => {
     document.querySelector('#tetro-spalte span').innerText = tetro.spalte;
 }
 
-const darstellungAktualisieren = () => {
+const rasterAktualisieren = () => {
     weltRasterAktualisieren(welt, tetro);
     positionZeigen();
 }
@@ -112,7 +134,7 @@ const starten = () => {
     welt = weltErzeugen(hoehe, breite);
     weltContainerInitialisieren(welt);
     naechstesBaustein();
-    darstellungAktualisieren();
+    rasterAktualisieren();
 }
 
 starten();

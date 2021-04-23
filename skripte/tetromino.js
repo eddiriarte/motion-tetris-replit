@@ -19,18 +19,38 @@ class Tetromino {
     }
 
     /**
-     * @TODO Implementiere diese Methode zu ende.
+     * @TODO Implementiere diese Methode zu Ende.
      *       - Keep it simple, aber du darfst auf kollisionen Prüfen, s. `kollidiert`
      */
     drehen(welt) {
+        const laenge = this.muster.length;
+        const neuerMuster = [];
+
+        // ... hier kommt dein Code:
+
+
+
+        this.muster = neuerMuster
     }
 
-    // prüft ob das Tetromino sich auf dem gegebenen Koordinaten befindet.
+    /**git a
+     * Prüft ob das Tetromino sich auf dem gegebenen Koordinaten befindet.
+     *
+     * @param zeile
+     * @param spalte
+     * @returns {boolean}
+     */
     istAufZelle(zeile, spalte) {
         return !this.istNichtAufZelle(zeile, spalte);
     }
 
-    // prüft ob das Tetromino sich nicht auf dem gegebenen Koordinaten befindet.
+    /**
+     * Prüft ob das Tetromino sich nicht auf dem gegebenen Koordinaten befindet.
+     *
+     * @param zeile
+     * @param spalte
+     * @returns {boolean}
+     */
     istNichtAufZelle(zeile, spalte) {
         const y = zeile - this.zeile;
         const x = spalte - this.spalte;
@@ -41,7 +61,13 @@ class Tetromino {
             || spalte >=  (this.spalte + this.muster.length);
     }
 
-    // gibt die Zelle vom Tetromuster zurück welche sich auf dem gegebenen Koordinaten befindet.
+    /**
+     * Gibt die Zelle vom Tetromuster zurück welche sich auf dem gegebenen Koordinaten befindet.
+     *
+     * @param zeile
+     * @param spalte
+     * @returns {*}
+     */
     zelle(zeile, spalte) {
         const y = zeile - this.zeile;
         const x = spalte - this.spalte;
