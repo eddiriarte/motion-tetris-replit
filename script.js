@@ -4,7 +4,7 @@ const tetris = new Tetris();
  * @TODO finde den Fehler
  */
 tetris.beiGameOver = function () {
-    if (this.gestartet) {
+    if (!this.gestartet) {
         return;
     }
 
