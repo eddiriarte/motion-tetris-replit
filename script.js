@@ -22,12 +22,15 @@ tetris.zeileAbbauen = function () {
 
         setTimeout(function (zeile) {
             // 1. benutze `splice` um die Zeile zu löschen.
+            this.welt.slice(zeile, 1);
+
+
             // 2. füge eine neue Zeile oben auf dem Welt raster.
+            this.welt = [neueLeereZeile(this.welt[0].length), ...this.welt]
+
+
             // 3. vergiss nicht die Anzeige zu aktualisieren
-
-
-
-
+            this.aktualisieren()
 
             // -----
         }.apply(this, [zeile]), 50 + (50 * total));
