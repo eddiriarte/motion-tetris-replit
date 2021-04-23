@@ -24,8 +24,7 @@ tetris.tetroEinfrieren = function () {
                     || tetroSpalte >= muster.length) {
 
                     // ....
-
-
+                    return weltZelle;
                     // ----
                 }
 
@@ -36,8 +35,7 @@ tetris.tetroEinfrieren = function () {
 
 
                 // ....
-
-
+                return tetroSpalte !== 0 ? tetroZelle : weltZelle;
                 // ----
 
             });
